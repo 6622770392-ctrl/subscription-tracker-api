@@ -46,7 +46,7 @@ Follow these steps to set up the project locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-link-here>
+git clone https://github.com/pydneez/subscription-tracker-api
 cd subscription-tracker
 
 ```
@@ -91,7 +91,6 @@ python run.py
 
 ```
 
-*> The API will start at https://www.google.com/search?q=http://127.0.0.1:5000*
 
 ---
 
