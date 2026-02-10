@@ -46,8 +46,8 @@ Follow these steps to set up the project locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/pydneez/subscription-tracker-api
-cd subscription-tracker
+git clone https://github.com/Justsaucz/subscription-tracker-api
+cd subscription-tracker-api
 
 ```
 
