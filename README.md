@@ -139,3 +139,10 @@ python run.py
 
 ---
 
+### 3. Summarize prices (Per month)
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| **Total** | `/analytics` | List all prices that are Active. |
+
+
