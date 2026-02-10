@@ -5,7 +5,7 @@ from app.models import Subscription, FrequencyType, StatusType
 bp = Blueprint('analytics', __name__, url_prefix='/analytics')
 
 
-@bp.route('/monthly-total', methods=['GET'])
+@bp.route('', methods=['GET'])
 def monthly_total():
 
     subs = Subscription.query.filter_by(status=StatusType.ACTIVE).all()
