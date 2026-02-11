@@ -1,4 +1,4 @@
-from sqlalchemy import func
+from flask import Blueprint
 from models import Subscription, Category
 from app import db
 
