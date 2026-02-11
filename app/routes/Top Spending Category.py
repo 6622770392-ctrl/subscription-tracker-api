@@ -4,7 +4,7 @@ from app import db
 
 bp = Blueprint('top-spending-category', __name__, url_prefix='/top-spending-category')
 
-@bp.route('/top-spending-category')
+@bp.route('', methods=['GET'])
 def top_spending_category():
 
     subscriptions = db.session.query(Subscription, Category)\
