@@ -4,7 +4,7 @@ from app.models import Budget, Subscription, FrequencyType, StatusType
 
 bp = Blueprint('budget', __name__, url_prefix='/budget')
 
-@app.route('/<float:limit>', methods=['PUT'])
+@bp.route('/<float:limit>', methods=['PUT'])
 def set_budget(limit):
 
     if limit <= 0:
@@ -25,6 +25,7 @@ def set_budget(limit):
         "monthly_limit": budget.monthly_limit
     }), 200
 
+
 @bp.route('', methods=['GET'])
 def get_budget():
 
@@ -34,6 +35,7 @@ def get_budget():
         return jsonify({"message": "No budget set"}), 404
 
     return jsonify(budget.to_json()), 200
+
 
 @bp.route('/status', methods=['GET'])
 def budget_status():
