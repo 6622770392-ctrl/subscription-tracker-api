@@ -1,4 +1,4 @@
-# 📊 SubTrack API (Subscription Tracker)
+# 📊 SubTrack API (Subscription Tracker) gg
 
 A RESTful API built with **Python** and **Flask** to help users track recurring expenses, manage subscriptions, and calculate monthly spending. This project demonstrates modular software architecture using Flask Blueprints and SQLAlchemy.
 
