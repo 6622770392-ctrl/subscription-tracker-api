@@ -155,14 +155,11 @@ python run.py
 | **GET** | `/budget/status` | Show the status. |
 | **PUT** | `/budget/<NUM>` | Limit the budget. |
 
-**📝 GET Request Example (Status):**
+**📝 PUT Request Example (Limit):**
 
 ```json
 {
-  "monthly_budget": 100,
-  "current_spending": 75.98,
-  "remaining_budget": 24.02,
-  "usage_percent": 75.98
+  "limit": 150
 }
 
 
