@@ -153,7 +153,7 @@ python run.py
 | --- | --- | --- |
 | **GET** | `/budget` | Show current budget. |
 | **GET** | `/budget/status` | Show the status. |
-| **POST** | `/budget/<NUM>` | Limit the budget. |
+| **PUT** | `/budget/<NUM>` | Limit the budget. |
 
 **📝 GET Request Example (Status):**
 
