@@ -143,6 +143,29 @@ python run.py
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| **Total** | `/analytics` | List total prices that are Active. |
+| **GET** | `/analytics` | List total prices that are Active. |
+
+---
+
+### 4. Limit Budget
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| **GET** | `/budget` | Show current budget. |
+| **GET** | `/budget/status` | Show the status. |
+| **POST** | `/budget/<NUM>` | Limit the budget. |
+
+**📝 GET Request Example (Status):**
+
+```json
+{
+  "monthly_budget": 100,
+  "current_spending": 75.98,
+  "remaining_budget": 24.02,
+  "usage_percent": 75.98
+}
+
+
+```
 
 
