@@ -2,7 +2,9 @@ from sqlalchemy import func
 from models import Subscription, Category
 from app import db
 
-@bp.route("/top-spending-category")
+bp = Blueprint('top-spending-category', __name__, url_prefix='/top-spending-category')
+
+@bp.route('/top-spending-category')
 def top_spending_category():
 
     subscriptions = db.session.query(Subscription, Category)\
