@@ -1,15 +1,18 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app import db
 from app.models import Budget, Subscription, FrequencyType, StatusType
 
 bp = Blueprint('budget', __name__, url_prefix='/budget')
 
-@bp.route('/<limit>', methods=['PUT'])
-def set_budget(limit):
-    try:
-        limit = float(limit)
-    except ValueError:
-        return jsonify({"error": "Invalid number"}), 400
+@bp.route('', methods=['PUT'])
+def set_budget():
+
+    data = request.get_json()
+
+    if not data or 'limit' not in data:
+        return jsonify({"error": "Missing field: limit"}), 400
+
+    limit = data['limit']
 
     if limit <= 0:
         return jsonify({"error": "Budget must be positive"}), 400
