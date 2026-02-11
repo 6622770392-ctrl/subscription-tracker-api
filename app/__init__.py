@@ -17,11 +17,13 @@ def create_app():
     from app.routes.category import bp as cat_bp 
     from app.routes.analytics import bp as analytics_bp
     from app.routes.budget import bp as budget_bp
+    from app.routes.top_spending import bp as top_spending_bp
 
     app.register_blueprint(sub_bp)
     app.register_blueprint(cat_bp)
     app.register_blueprint(analytics_bp)
     app.register_blueprint(budget_bp)
+    app.register_blueprint(top_spending_bp)
 
     with app.app_context():
         db.create_all()
