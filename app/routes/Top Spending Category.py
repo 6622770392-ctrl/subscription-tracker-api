@@ -1,37 +1,44 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from app.models import Subscription, Category, StatusType, FrequencyType
 from app import db
+from sqlalchemy.sql import func
 
 bp = Blueprint('top-spending-category', __name__, url_prefix='/top-spending-category')
 
 @bp.route('', methods=['GET'])
 def top_spending_category():
+    try:
+        # ดึงเฉพาะ Subscription ที่ Active
+        subscriptions = db.session.query(Subscription, Category.name)\
+            .join(Category, Subscription.category_id == Category.id)\
+            .filter(Subscription.status == StatusType.ACTIVE)\
+            .all()
 
-    subscriptions = db.session.query(Subscription, Category)\
-        .join(Category, Subscription.category_id == Category.id)\
-        .filter(Subscription.status == StatusType.ACTIVE)\
-        .all()
+        if not subscriptions:
+            return jsonify({"message": "No active subscriptions found"}), 404
 
-    category_totals = {}
+        category_totals = {}
 
-    for sub, cat in subscriptions:
-        if sub.frequency == FrequencyType.WEEKLY:
-            monthly_cost = sub.price * 4
-        elif sub.frequency == FrequencyType.MONTHLY:
-            monthly_cost = sub.price
-        elif sub.frequency == FrequencyType.YEARLY:
-            monthly_cost = sub.price / 12
-        else:
-            monthly_cost = 0
+        for sub, cat_name in subscriptions:
+            # คำนวณรายเดือน
+            if sub.frequency == FrequencyType.WEEKLY:
+                monthly_cost = sub.price * 4
+            elif sub.frequency == FrequencyType.MONTHLY:
+                monthly_cost = sub.price
+            elif sub.frequency == FrequencyType.YEARLY:
+                monthly_cost = sub.price / 12
+            else:
+                monthly_cost = 0
 
-        category_totals[cat.name] = category_totals.get(cat.name, 0) + monthly_cost
+            category_totals[cat_name] = category_totals.get(cat_name, 0) + monthly_cost
 
-    if not category_totals:
-        return {"message": "No active subscriptions found"}, 404
+        # หาหมวดหมู่ที่จ่ายหนักที่สุด
+        top_category_name = max(category_totals, key=category_totals.get)
 
-    top_category = max(category_totals, key=category_totals.get)
+        return jsonify({
+            "category": top_category_name,
+            "monthly_total": round(category_totals[top_category_name], 2)
+        }), 200
 
-    return {
-        "category": top_category,
-        "monthly_total": round(category_totals[top_category], 2)
-    }
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
