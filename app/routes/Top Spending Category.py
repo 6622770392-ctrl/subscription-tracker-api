@@ -1,5 +1,6 @@
 from flask import Blueprint
-from models import Subscription, Category
+from sqlalchemy import func
+from app.models import Subscription, Category
 from app import db
 
 bp = Blueprint('top-spending-category', __name__, url_prefix='/top-spending-category')
