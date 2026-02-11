@@ -4,7 +4,7 @@ from app.models import Budget, Subscription, FrequencyType, StatusType
 
 bp = Blueprint('budget', __name__, url_prefix='/budget')
 
-@app.route('/<float:limit>', methods=["PUT"])
+@app.route('/<float:limit>', methods=['PUT'])
 def set_budget(limit):
 
     if limit <= 0:
