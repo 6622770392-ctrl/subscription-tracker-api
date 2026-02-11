@@ -2,7 +2,7 @@ from sqlalchemy import func
 from models import Subscription, Category
 from app import db
 
-@app.route("/analytics/top-spending-category")
+@app.route("/top-spending-category")
 def top_spending_category():
 
     subscriptions = db.session.query(Subscription, Category)\
