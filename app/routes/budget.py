@@ -4,22 +4,29 @@ from app.models import Budget, Subscription, FrequencyType, StatusType
 
 bp = Blueprint('budget', __name__, url_prefix='/budget')
 
-@bp.route('/<float:limit>', methods=['POST'])
+@app.route("/budget/<limit>", methods=["PUT"])
 def set_budget(limit):
+    try:
+        limit = float(limit)
+    except ValueError:
+        return jsonify({"error": "Invalid number"}), 400
+
+    if limit <= 0:
+        return jsonify({"error": "Budget must be positive"}), 400
 
     budget = Budget.query.first()
 
-    if budget:
-        budget.monthly_limit = limit
-    else:
+    if not budget:
         budget = Budget(monthly_limit=limit)
         db.session.add(budget)
+    else:
+        budget.monthly_limit = limit
 
     db.session.commit()
 
     return jsonify({
         "message": "Budget updated",
-        "monthly_limit": limit
+        "monthly_limit": budget.monthly_limit
     }), 200
 
 @bp.route('', methods=['GET'])
