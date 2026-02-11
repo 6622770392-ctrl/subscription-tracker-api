@@ -15,7 +15,7 @@ def create_app():
     # Register Blueprints
     from app.routes.subscription import bp as sub_bp 
     from app.routes.category import bp as cat_bp 
-    from app.routes.analytics_routes import bp as analytics_bp
+    from app.routes.analytics import bp as analytics_bp
     
     app.register_blueprint(sub_bp)
     app.register_blueprint(cat_bp)
