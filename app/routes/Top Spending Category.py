@@ -1,6 +1,5 @@
 from flask import Blueprint
-from sqlalchemy import func
-from app.models import Subscription, Category
+from app.models import Subscription, Category, StatusType, FrequencyType
 from app import db
 
 bp = Blueprint('top-spending-category', __name__, url_prefix='/top-spending-category')
@@ -16,11 +15,11 @@ def top_spending_category():
     category_totals = {}
 
     for sub, cat in subscriptions:
-        if sub.frequency.value == "Weekly":
+        if sub.frequency == FrequencyType.WEEKLY:
             monthly_cost = sub.price * 4
-        elif sub.frequency.value == "Monthly":
+        elif sub.frequency == FrequencyType.MONTHLY:
             monthly_cost = sub.price
-        elif sub.frequency.value == "Yearly":
+        elif sub.frequency == FrequencyType.YEARLY:
             monthly_cost = sub.price / 12
         else:
             monthly_cost = 0
