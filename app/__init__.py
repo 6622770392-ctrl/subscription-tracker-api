@@ -43,3 +43,4 @@ def create_app():
         return make_response(jsonify({'error': 'Internal Server Error', 'message': str(error)}), 500)
 
     return app
+
