@@ -69,7 +69,7 @@ def seed_database():
                 price=89.99,
                 frequency=FrequencyType.MONTHLY,
                 category_id=categories["Utilities"].id,
-                status=StatusType.ACTIVE
+                status=StatusType.CANCELLED
             ),
             Subscription(
                 name="Duolingo",
