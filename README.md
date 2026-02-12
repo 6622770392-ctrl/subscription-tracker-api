@@ -164,6 +164,7 @@ python run.py
 
 
 ```
+---
 
 ### 5. Top Spending Category
 
