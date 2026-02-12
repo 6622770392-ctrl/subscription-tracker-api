@@ -8,7 +8,6 @@ bp = Blueprint('top_spending_category', __name__, url_prefix='/top-spending-cate
 @bp.route('', methods=['GET'])
 def top_spending_category():
     try:
-        # ดึงเฉพาะ Subscription ที่ Active
         subscriptions = db.session.query(Subscription, Category.name)\
             .join(Category, Subscription.category_id == Category.id)\
             .filter(Subscription.status == StatusType.ACTIVE)\
@@ -20,7 +19,6 @@ def top_spending_category():
         category_totals = {}
 
         for sub, cat_name in subscriptions:
-            # คำนวณรายเดือน
             if sub.frequency == FrequencyType.WEEKLY:
                 monthly_cost = sub.price * 4
             elif sub.frequency == FrequencyType.MONTHLY:
@@ -32,7 +30,6 @@ def top_spending_category():
 
             category_totals[cat_name] = category_totals.get(cat_name, 0) + monthly_cost
 
-        # หาหมวดหมู่ที่จ่ายหนักที่สุด
         top_category_name = max(category_totals, key=category_totals.get)
 
         return jsonify({
