@@ -3,7 +3,7 @@ from app.models import Subscription, Category, StatusType, FrequencyType
 from app import db
 from sqlalchemy.sql import func
 
-bp = Blueprint('top-spending-category', __name__, url_prefix='/top-spending-category')
+bp = Blueprint('top_spending_category', __name__, url_prefix='/top-spending-category')
 
 @bp.route('', methods=['GET'])
 def top_spending_category():
