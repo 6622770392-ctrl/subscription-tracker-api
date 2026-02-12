@@ -170,5 +170,3 @@ python run.py
 | Method | Endpoint | Description |
 | --- | --- | --- |
 | **GET** | `/top-spending-category` | Show top spending category. |
-
-```
