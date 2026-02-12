@@ -165,4 +165,10 @@ python run.py
 
 ```
 
+### 5. Top Spending Category
 
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| **GET** | `/top-spending-category` | Show top spending category. |
+
+```
