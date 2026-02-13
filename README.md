@@ -33,7 +33,10 @@ A RESTful API built with **Python** and **Flask** to help users track recurring 
     └── routes/            # API Route Blueprints
         ├── __init__.py
         ├── category_routes.py
-        └── subscription_routes.py
+        ├── subscription_routes.py
+        ├── analytics_routes.py
+        ├── budget_routes.py
+        └── top_spending_category_routes.py
 
 ```
 
